@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI_CRUD.Controllers
 {
-    [Route("api/[Products]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -19,29 +19,29 @@ namespace WebAPI_CRUD.Controllers
             return Ok(myProducts);
         }
         [HttpGet]
-        [Route("/Index/{id}")]
+        [Route("/product/Index/{id}")]
         public IActionResult GetProductByIndex(int id)
         {
             if (myProducts.Count < id)
             {
                 return NotFound(string.Format($"Sorry Product not found with the id:" + id));
             }
-            string Product= myProducts[id];
+            string Product = myProducts[id];
             return Ok(Product);
         }
         [HttpGet]
-        [Route("/Character/{chars}")]
+        [Route("/product/Character/{chars}")]
         public IActionResult GetProductByChar(string chars)
         {
             if (!myProducts.Contains(chars))
             {
                 return NotFound(string.Format($"Sorry Product not found with the name:" + chars));
             }
-            var Product= from f in myProducts where f.StartsWith(chars) select f;
+            var Product = from f in myProducts where f.StartsWith(chars) select f;
             return Ok(Product);
         }
         [HttpGet]
-        [Route("/Count")]
+        [Route("/product/Count")]
         public IActionResult GetCount()
         {
             return Ok(myProducts.Count);
@@ -50,7 +50,7 @@ namespace WebAPI_CRUD.Controllers
 
         #region Post
         [HttpPost]
-        [Route("/add")]
+        [Route("/product/add")]
         public IActionResult AddProduct(string name)
         {
             myProducts.Add(name);
@@ -61,7 +61,7 @@ namespace WebAPI_CRUD.Controllers
 
         #region Delete
         [HttpDelete]
-        [Route("/delete/{id}")]
+        [Route("/product/delete/{id}")]
         public IActionResult DeleteProduct(int id)
         {
             string name = myProducts[id];
@@ -70,7 +70,7 @@ namespace WebAPI_CRUD.Controllers
 
         }
         [HttpDelete]
-        [Route("/delete/ByName/{name}")]
+        [Route("/product/delete/ByName/{name}")]
         public IActionResult DeleteProductByName(string name)
         {
             myProducts.Remove(name);
@@ -81,7 +81,7 @@ namespace WebAPI_CRUD.Controllers
 
         #region Put
         [HttpPut]
-        [Route("/update/{id}/{name}")]
+        [Route("/product/update/{id}/{name}")]
         public IActionResult UpdateProduct(int id, string name)
         {
             string oldname = myProducts[id];

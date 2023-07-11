@@ -7,7 +7,7 @@ namespace WebAPI_CRUD.Controllers
     [ApiController]
     public class FriendsController : ControllerBase
     {
-        static List<string> myFriends = new List<string> () { "Vikram", "Ranjan", "Mano", "Vipul", "Rasheed","Marsh","Michael" };
+        static List<string> myFriends = new List<string>()  { "Vikram", "Ranjan", "Mano", "Vipul", "Rasheed","Marsh","Michael" };
 
         #region Get
         [HttpGet]
